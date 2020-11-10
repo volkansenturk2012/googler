@@ -2615,16 +2615,16 @@ class Result(object):
             # Adjust index to print result index clearly
             print(" %s%s%-3s%s" % (' ' * indent, colors.index, index + '.', colors.reset), end='')
             if not self.urlexpand:
-                print(' ' + colors.title + title + colors.reset + ' ' + colors.url + url + colors.reset)
+                print(' ' + colors.title + colors.reset + ' ' + colors.url + url + colors.reset)
             else:
-                print(' ' + colors.title + title + colors.reset)
+                print(' ' + colors.title  + colors.reset)
                 print(' ' * (indent + 5) + colors.url + url + colors.reset)
         else:
             if self.urlexpand:
-                print(' %s%-3s %s' % (' ' * indent, index + '.', title))
+                print(' %s%-3s' % (' ' * indent, index))
                 print(' %s%s' % (' ' * (indent + 4), url))
             else:
-                print(' %s%-3s %s %s' % (' ' * indent, index + '.', title, url))
+                print(' %s%-3s %s' % (' ' * indent, index , url))
 
     def _print_metadata_and_abstract(self, abstract, metadata=None, matches=None, indent=0):
         colors = self.colors
@@ -2662,11 +2662,11 @@ class Result(object):
     def print(self):
         """Print the result entry."""
         self._print_title_and_url(self.index, self.title, self.url)
-        self._print_metadata_and_abstract(self.abstract, metadata=self.metadata, matches=self.matches)
+        #self._print_metadata_and_abstract(self.abstract, metadata=self.metadata, matches=self.matches)
 
         for sitelink in self.sitelinks:
             self._print_title_and_url(sitelink.index, sitelink.title, sitelink.url, indent=4)
-            self._print_metadata_and_abstract(sitelink.abstract, indent=4)
+            #self._print_metadata_and_abstract(sitelink.abstract, indent=4)
 
     def jsonizable_object(self):
         """Return a JSON-serializable dict representing the result entry."""
